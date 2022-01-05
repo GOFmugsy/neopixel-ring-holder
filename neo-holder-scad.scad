@@ -22,22 +22,12 @@ difference() {
 	translate([0, 0, $neoHolderTh/2])
 		cylinder(h = $neoHolderTh, r = $neoRing - $neoRingHolder, center = true); 
 	// remove holes for wiring in back
-	rotate([0, 0, 15])
-	rotate_extrude(angle = 60)
-	translate([$neoRing - $neoHolderTh + 0.5, 0])
-		square([1, $neoRingTh + 20], center = true);
-	rotate([0, 0, 105])
-	rotate_extrude(angle = 60)
-	translate([$neoRing - $neoHolderTh + 0.5, 0])
-		square([1, $neoRingTh + 20], center = true);
-	rotate([0, 0, 195])
-	rotate_extrude(angle = 60)
-	translate([$neoRing - $neoHolderTh + 0.5, 0])
-		square([1, $neoRingTh + 20], center = true);
-	rotate([0, 0, 285])
-	rotate_extrude(angle = 60)
-	translate([$neoRing - $neoHolderTh + 0.5, 0])
-		square([1, $neoRingTh + 20], center = true);
+	for(i = [1:1:4]){
+		rotate([0, 0, 15 + (i * 90)])
+		rotate_extrude(angle = 60)
+		translate([$neoRing - $neoHolderTh + 0.5, 0])
+			square([2, $neoRingTh + 20], center = true);
+	}
 }
 
 
@@ -59,21 +49,12 @@ linear_extrude(height = $armWidth) {
 }
 
 // Draw arm curve
-// calculate actual size to get extrude angle. use maths
-difference() {
-	rotate(90)
-	rotate_extrude(angle = 13)
-	translate([$neoRing - ($armTh / 2), $totalHolderTh + ($armLength / 2)])
-	square([$armTh, $armLength], center = true);
-	// trim edges of arm
-	//translate([($armWidth / 2) - 2, $neoRing - ($armTh / 2), $totalHolderTh + ($armLength / 2)])
-	//cube([6, $armTh, $armLength], center = true);
+intersection() {
+	translate([0, 0, $totalHolderTh + ($armLength / 2)])
+	cylinder(h = $armLength, r = $neoRing, center = true);
+	translate([0, $neoRing, $totalHolderTh + ($armLength / 2)])
+	cube([10, 10, $armLength], center = true);
 }
-
-rotate(90)
-rotate_extrude(angle = -13)
-translate([$neoRing - ($armTh / 2), $totalHolderTh + ($armLength / 2)])
-square([$armTh, $armLength], center = true);
 
 // draw upper ramp
 // -1 to mate ramp with arm - maybe + 1 arm size if needed?
