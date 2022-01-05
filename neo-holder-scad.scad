@@ -2,7 +2,7 @@ $camRing = 31.75 / 2;
 $neoRing = 23.3;
 $neoRingHolder = 1;
 $neoRingTh = 1;
-$neoHolderTh = 3;
+$neoHolderTh = 2;
 $totalHolderTh = $neoRingTh + $neoHolderTh;
 $armLength = 30;
 $armWidth = 10;
@@ -16,12 +16,30 @@ $fn = 500;
 
 // draw light ring neopixel holder
 difference() {
-    translate([0, 0, $totalHolderTh / 2])
-        cylinder(h = $totalHolderTh, r = $neoRing, center = true);
-    cylinder(h = 10, r = $camRing, center = true);
-    translate([0, 0, $neoHolderTh/2])
-    cylinder(h = $neoHolderTh, r = $neoRing - $neoRingHolder, center = true); 
+	translate([0, 0, $totalHolderTh / 2])
+		cylinder(h = $totalHolderTh, r = $neoRing, center = true);
+	cylinder(h = 10, r = $camRing, center = true);
+	translate([0, 0, $neoHolderTh/2])
+		cylinder(h = $neoHolderTh, r = $neoRing - $neoRingHolder, center = true); 
+	// remove holes for wiring in back
+	rotate([0, 0, 15])
+	rotate_extrude(angle = 60)
+	translate([$neoRing - $neoHolderTh + 0.5, 0])
+		square([1, $neoRingTh + 20], center = true);
+	rotate([0, 0, 105])
+	rotate_extrude(angle = 60)
+	translate([$neoRing - $neoHolderTh + 0.5, 0])
+		square([1, $neoRingTh + 20], center = true);
+	rotate([0, 0, 195])
+	rotate_extrude(angle = 60)
+	translate([$neoRing - $neoHolderTh + 0.5, 0])
+		square([1, $neoRingTh + 20], center = true);
+	rotate([0, 0, 285])
+	rotate_extrude(angle = 60)
+	translate([$neoRing - $neoHolderTh + 0.5, 0])
+		square([1, $neoRingTh + 20], center = true);
 }
+
 
 // draw arm
 difference() {
@@ -40,11 +58,17 @@ linear_extrude(height = $armWidth) {
 		);
 }
 
+// Draw arm curve
 // calculate actual size to get extrude angle. use maths
-rotate(90)
-rotate_extrude(angle = 13)
-translate([$neoRing - ($armTh / 2), $totalHolderTh + ($armLength / 2)])
-square([$armTh, $armLength], center = true);
+difference() {
+	rotate(90)
+	rotate_extrude(angle = 13)
+	translate([$neoRing - ($armTh / 2), $totalHolderTh + ($armLength / 2)])
+	square([$armTh, $armLength], center = true);
+	// trim edges of arm
+	//translate([($armWidth / 2) - 2, $neoRing - ($armTh / 2), $totalHolderTh + ($armLength / 2)])
+	//cube([6, $armTh, $armLength], center = true);
+}
 
 rotate(90)
 rotate_extrude(angle = -13)
