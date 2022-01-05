@@ -4,11 +4,9 @@ $neoRingHolder = 2;
 $neoRingTh = 1;
 $neoHolderTh = 2;
 $totalHolderTh = $neoRingTh + $neoHolderTh;
-$ringWidth = $neoRing - $camRing;
 $armLength = 30;
 $armWidth = 10;
 $armTh = 2.75;
-$tripodOffset = 12.75;
 $mountHole = 7;
 $mountLength = 11;
 $mountTh = 2;
@@ -70,7 +68,7 @@ translate([0,$neoRing + $upperRampSize - $mountTh,$totalHolderTh + $armLength + 
 difference() {
 	cube([$armWidth, $mountTh, $mountLength], center = true);
 	rotate([90,0,0])
-	cylinder(h = $mountTh, r = 2, center = true);
+	cylinder(h = $mountTh, r = $mountHole, center = true);
 	
 }
 
