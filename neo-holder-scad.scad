@@ -1,13 +1,13 @@
 $camRing = 31.75 / 2;
-$neoRing = 44.6 / 2;
-$neoRingHolder = 2;
+$neoRing = 23.3;
+$neoRingHolder = 1;
 $neoRingTh = 1;
-$neoHolderTh = 2;
+$neoHolderTh = 3;
 $totalHolderTh = $neoRingTh + $neoHolderTh;
 $armLength = 30;
 $armWidth = 10;
 $armTh = 2.75;
-$mountHole = 7;
+$mountHole = 3.5;
 $mountLength = 11;
 $mountTh = 2;
 $upperRampSize = 12.75;
