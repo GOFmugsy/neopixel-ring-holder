@@ -11,6 +11,7 @@ $mountHole = 3.5;
 $mountLength = 11;
 $mountTh = 2;
 $upperRampSize = 12.75;
+$wireCut = 2;
 
 $fn = 500;
 
@@ -25,8 +26,8 @@ difference() {
 	for(i = [1:1:4]){
 		rotate([0, 0, 15 + (i * 90)])
 		rotate_extrude(angle = 60)
-		translate([$neoRing - $neoHolderTh + 0.5, 0])
-			square([2, $neoRingTh + 20], center = true);
+		translate([$neoRing - $neoHolderTh, 0])
+			square([$wireCut, $neoRingTh + 20], center = true);
 	}
 }
 
