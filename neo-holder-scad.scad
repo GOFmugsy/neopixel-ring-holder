@@ -50,17 +50,6 @@ difference() {
 		cube([$armWidth, $armTh, $armLength], center = true);
 }
 
-// draw lower arm ramp
-translate([$armWidth / 2, $camRing, $totalHolderTh])
-rotate([0, -90, 0])
-linear_extrude(height = $armWidth) {
-	polygon([
-		[0, 0],
-		[0, $neoRing - $camRing - $armTh],
-		[$neoRing - $camRing - $armTh, $neoRing - $camRing - $armTh] ]
-		);
-}
-
 // Draw arm curve
 intersection() {
 	translate([0, 0, $totalHolderTh + ($armLength / 2)])
