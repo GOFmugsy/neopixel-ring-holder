@@ -31,6 +31,18 @@ difference() {
 	}
 }
 
+// draw curl support
+difference() {
+	intersection() {
+		translate([0, $camRing + (($neoRing - $camRing - $armTh) / 2) + .9, $totalHolderTh])
+		rotate([45, 0, 0])
+			cylinder(h = 10, r = $armWidth + 20, center = true);
+		translate([0, 0, $totalHolderTh + ($armLength / 2)])
+		cylinder(h = $armLength, r = $neoRing - $neoRingTh - $wireCut, center = true);
+	}
+	cylinder(h = 30, r = $camRing, center = true);
+}
+
 
 // draw arm
 difference() {
